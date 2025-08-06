@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Management Console UI</title>
+  <style>
+    body {
+      font-family: monospace;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 2rem;
+    }
+    .console {
+      background-color: #2e2e2e;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      margin: auto;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      background-color: #3e8ed0;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #357ac9;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    .hidden {
+      display: none;
+    }
+    pre {
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<div class="console">
+  <h2>Hotel Management System</h2>
+
+  <div id="menu">
+    <p>Enter your choice :</p>
+    <button onclick="showRoomDetails()">1. Display room details</button>
+    <button onclick="showAvailability()">2. Display room availability</button>
+    <button onclick="bookRoom()">3. Book</button>
+    <button onclick="orderFood()">4. Order food</button>
+    <button onclick="checkout()">5. Checkout</button>
+    <button onclick="exit()">6. Exit</button>
+  </div>
+
+  <div id="output" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+function showRoomDetails() {
+  const output = `
+Choose room type :
+1. Luxury Double Room
+2. Deluxe Double Room
+3. Luxury Single Room
+4. Deluxe Single Room
+  `;
+  document.getElementById('output').innerHTML = `<pre>${output}</pre>
+    <select onchange="showRoomInfo(this.value)">
+      <option value="">Select room type</option>
+      <option value="2">Deluxe Double Room</option>
+      <option value="1">Luxury Double Room</option>
+      <option value="3">Luxury Single Room</option>
+      <option value="4">Deluxe Single Room</option>
+    </select>`;
+}
+
+function showRoomInfo(option) {
+  let details = '';
+  if (option === "2") {
+    details = `
+Number of double beds : 1
+AC : No
+Free breakfast : Yes
+Charge per day: 3000
+    `;
+  } else if (option === "1") {
+    details = `
+Number of double beds : 1
+AC : Yes
+Free breakfast : Yes
+Charge per day: 4000
+    `;
+  } else if (option === "3") {
+    details = `
+Number of single beds : 1
+AC : Yes
+Free breakfast : No
+Charge per day: 2500
+    `;
+  } else if (option === "4") {
+    details = `
+Number of single beds : 1
+AC : No
+Free breakfast : No
+Charge per day: 1500
+    `;
+  }
+  document.getElementById('output').innerHTML += `<pre>${details}</pre>`;
+}
+
+function showAvailability() {
+  document.getElementById('output').innerHTML = `
+<pre>
+Room Availability:
+Luxury Double Room - Available
+Deluxe Double Room - Limited
+Luxury Single Room - Full
+Deluxe Single Room - Available
+</pre>`;
+}
+
+function bookRoom() {
+  document.getElementById('output').innerHTML = `
+<pre>
+Booking page:
+(Simulation only)
+Please visit reception to complete the booking.
+</pre>`;
+}
+
+function orderFood() {
+  document.getElementById('output').innerHTML = `
+<pre>
+Food Order Menu:
+1. Sandwich - ₹100
+2. Pasta - ₹200
+3. Tea - ₹50
+4. Coffee - ₹70
+</pre>
+<select>
+  <option>Select Item</option>
+  <option>Sandwich</option>
+  <option>Pasta</option>
+  <option>Tea</option>
+  <option>Coffee</option>
+</select>
+`;
+}
+
+function checkout() {
+  document.getElementById('output').innerHTML = `
+<pre>
+Checkout Summary:
+Room Charges: ₹3000
+Food Charges: ₹200
+Total: ₹3200
+Thanks for staying with us!
+</pre>`;
+}
+
+function exit() {
+  document.getElementById('output').innerHTML = `<pre>Exiting the system. Thank you!</pre>`;
+}
+</script>
+
+</body>
+</html>
